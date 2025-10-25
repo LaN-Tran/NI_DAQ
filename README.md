@@ -8,7 +8,7 @@
 
   - 1.3 Turn on the device: switch at I position.
 
-  - 1.4 To test that the NI-DAQ is connected to the computer, use NI-MAX to detect the device. If the device appears, it is good. Otherwise, check whether any of the previous steps (1.1, 1.2, and 1.3) have been missed.
+  - 1.4 To test that the NI-DAQ is connected to the computer, use NI-MAX (NI-MAX is the VISA application, to understand it, visit https://github.com/LaN-Tran/Automate_Lab_Instrument/tree/main) to detect the device. If the device appears, it is good. Otherwise, check whether any of the previous steps (1.1, 1.2, and 1.3) have been missed.
 
 - 2. How to use python to program NI-DAQ USB-6349
 
