@@ -8,4 +8,7 @@
 
   - NI-DAQ USB 6349: AI only supports differential inputs (AI+ vs AI-), no RSE (signle ended support)
 
+  - sample clock: is the onboard (i.e integrated inside the NI-DAQ USB 6349) clock
+
+  - NI-DAQ USB 6349 (simultaneous sampling on all AI channels): max 500k S/s
 - NI-DAQ manual: `../370784k.pdf`
