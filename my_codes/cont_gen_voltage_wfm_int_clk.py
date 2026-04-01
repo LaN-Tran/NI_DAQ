@@ -69,19 +69,22 @@ def main():
     with nidaqmx.Task() as task:
         sampling_rate = 1000.0
         number_of_samples = 1000
-        task.ao_channels.add_ao_voltage_chan("Dev1/ao0", min_val=-1.0, max_val=1.0)
-        task.ao_channels.add_ao_voltage_chan("Dev1/ao1", min_val=-1.0, max_val=1.0)
+        task.ao_channels.add_ao_voltage_chan("Dev2/ao0", min_val=-1.0, max_val=5.0)
+        task.ao_channels.add_ao_voltage_chan("Dev2/ao1", min_val=-5.0, max_val=5.0)
         task.timing.cfg_samp_clk_timing(sampling_rate, sample_mode=AcquisitionType.CONTINUOUS)
 
         actual_sampling_rate = task.timing.samp_clk_rate
         print(f"Actual sampling rate: {actual_sampling_rate:g} S/s")
 
+        # VIN_0 < 0.15
         data_ao0 = generate_DC(
-            amplitude=0.75,
+            amplitude=0.00,
             number_of_samples=number_of_samples,
         )
+
+        # FW singal = 5
         data_ao1 = generate_DC(
-            amplitude=0.25,
+            amplitude=0,
             number_of_samples=number_of_samples,
         )
         multiple_channels_data = np.vstack((data_ao0, data_ao1))
