@@ -17,11 +17,11 @@ import numpy as np
 
 import time
 
-plt.ylim((0, 0.2))
+# plt.ylim((0, 1))
 plt.ion()
 
 i= 0
-sampling_rate = 10000.0
+sampling_rate = 1000 # must be integer type
 with nidaqmx.Task() as task:
     task.ai_channels.add_ai_voltage_chan("Dev1/ai0", terminal_config=TerminalConfiguration.DIFF, 
                                          min_val=-5.0, max_val=5.0, units=VoltageUnits.VOLTS)
@@ -42,7 +42,8 @@ with nidaqmx.Task() as task:
             data = task.read(number_of_samples_per_channel=sampling_rate)
             x_array = np.arange(0, len(data)) + i * sampling_rate
             plt.scatter(x_array, data, c = 'r', s = 0.01)
-            plt.ylim(-5,6)
+            # plt.yscale('log')
+            plt.ylim(0,5)
             plt.pause(0.05)
             i = i+1
     except KeyboardInterrupt:
