@@ -9,9 +9,9 @@ from nidaqmx.constants import AcquisitionType, LineGrouping
 
 with nidaqmx.Task() as task:
     # data = [bool(i % 2) for i in range(1001)]
-    data = [True, True, True, True, True, False, False, False, False, False]
-    for i in range(10):
-        data += [True, True, True, True, True, False, False, False, False, False]
+    data = [True, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False]
+    # for i in range(10):
+    #     data += [True, False, False, False, False, False]
 
     task.do_channels.add_do_chan("Dev1/port0/line0", line_grouping=LineGrouping.CHAN_PER_LINE)
     
