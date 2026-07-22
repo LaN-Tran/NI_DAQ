@@ -23,7 +23,7 @@ plt.ion()
 i= 0
 sampling_rate = 1000 # must be integer type
 with nidaqmx.Task() as task:
-    task.ai_channels.add_ai_voltage_chan("Dev1/ai0", terminal_config=TerminalConfiguration.DIFF, 
+    task.ai_channels.add_ai_voltage_chan("Dev3/ai0", terminal_config=TerminalConfiguration.DIFF, 
                                          min_val=-5.0, max_val=5.0, units=VoltageUnits.VOLTS)
     
     # task.ai_channels.add_ai_voltage_chan("Dev2/ai1", terminal_config=TerminalConfiguration.RSE, 
@@ -43,7 +43,7 @@ with nidaqmx.Task() as task:
             x_array = np.arange(0, len(data)) + i * sampling_rate
             plt.scatter(x_array, data, c = 'r', s = 0.01)
             # plt.yscale('log')
-            plt.ylim(0,5)
+            plt.ylim(2,3)
             plt.pause(0.05)
             i = i+1
     except KeyboardInterrupt:

@@ -9,9 +9,9 @@ from nidaqmx.constants import AcquisitionType, LineGrouping
 
 with nidaqmx.Task() as task:
     
-    data_d00 = np.array([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-    data_d01 = np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-    # data_d01 = np.array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
+    data_d00 = np.array([1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+    # data_d01 = np.array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+    data_d01 = np.array([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])
     # data_d00 = np.array([1, 0, 0, 0])
     # data_d01 = np.array([0, 0, 0, 0])
     # convert boolen python list into numpy array of type bool
@@ -24,8 +24,12 @@ with nidaqmx.Task() as task:
     task.do_channels.add_do_chan("Dev1/port0/line0", line_grouping=LineGrouping.CHAN_PER_LINE)
     task.do_channels.add_do_chan("Dev1/port0/line2", line_grouping=LineGrouping.CHAN_PER_LINE)
     
+    # task.timing.cfg_samp_clk_timing(
+    #     # sample_rate=1 [Hz], sample_mode=AcquisitionType.FINITE, samps_per_chan=len(data_d00)
+    #     rate=1, sample_mode=AcquisitionType.CONTINUOUS)
     task.timing.cfg_samp_clk_timing(
-        1, sample_mode=AcquisitionType.CONTINUOUS)
+        # sample_rate=1 [Hz], sample_mode=AcquisitionType.FINITE, samps_per_chan=len(data_d00)
+        1,sample_mode=AcquisitionType.CONTINUOUS)
 
     multiple_channels_data = np.vstack((data_d00, data_d01))
     
